@@ -120,6 +120,10 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
+# Show SELinux status in about phone
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.selinux=1
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     static_busybox \
