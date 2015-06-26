@@ -86,10 +86,15 @@ PRODUCT_PACKAGES += \
     macloader \
     tinymix
 
-ifneq ($(TARGET_HAS_CAM_FLASH) ,false)
+# Chromium DAWG
 PRODUCT_PACKAGES += \
-    Torch
-endif
+    libwebviewchromium_plat_support \
+    libwebviewchromium_loader
+
+#ifneq ($(TARGET_HAS_CAM_FLASH) ,false)
+#PRODUCT_PACKAGES += \
+#    Torch
+#endif
 
 # MFC API
 PRODUCT_PACKAGES += \
@@ -112,7 +117,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
     $(COMMON_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     $(COMMON_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
