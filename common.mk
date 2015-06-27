@@ -86,16 +86,6 @@ PRODUCT_PACKAGES += \
     macloader \
     tinymix
 
-# Chromium DAWG
-PRODUCT_PACKAGES += \
-    libwebviewchromium_plat_support \
-    libwebviewchromium_loader
-
-#ifneq ($(TARGET_HAS_CAM_FLASH) ,false)
-#PRODUCT_PACKAGES += \
-#    Torch
-#endif
-
 # MFC API
 PRODUCT_PACKAGES += \
     libsecmfcdecapi \
