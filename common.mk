@@ -89,11 +89,6 @@ PRODUCT_PACKAGES += \
     lights.exynos4 \
     macloader \
     tinymix
-    
-# Chromium
-PRODUCT_PACKAGES += \
-    libwebviewchromium_plat_support \
-    libwebviewchromium_loader
 
 # MFC API
 PRODUCT_PACKAGES += \
