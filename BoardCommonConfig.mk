@@ -169,3 +169,6 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # inherit from the proprietary version
 -include vendor/samsung/smdk4412-common/BoardConfigVendor.mk
+
+# Pre M ril
+COMMON_GLOBAL_CFLAGS += -DRIL_PRE_M_BLOBS
