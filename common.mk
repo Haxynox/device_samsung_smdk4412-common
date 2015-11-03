@@ -91,6 +91,10 @@ PRODUCT_PACKAGES += \
     macloader \
     tinymix
 
+# Stlport    
+PRODUCT_PACKAGES += \
+    libstlport
+
 # MFC API
 PRODUCT_PACKAGES += \
     libsecmfcdecapi \
