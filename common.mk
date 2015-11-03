@@ -91,9 +91,10 @@ PRODUCT_PACKAGES += \
     macloader \
     tinymix
 
-# Stlport    
+# Mic..    
 PRODUCT_PACKAGES += \
-    libstlport
+    libstlport \
+    libboringssl-compat
 
 # MFC API
 PRODUCT_PACKAGES += \
