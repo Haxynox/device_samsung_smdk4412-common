@@ -7,8 +7,8 @@ on early-init
     write /sys/block/mmcblk0/queue/scheduler noop
 
 on init
-    # Preload BoringSSL compat
-    export LD_PRELOAD "/system/lib/libboringssl-compat.so"
+# Preload BoringSSL compat and missing sym. lib
+    export LD_PRELOAD "/system/lib/libsamsung_symbols.so /system/lib/libboringssl-compat.so"
 
 # Support legacy paths
     symlink /sdcard /mnt/sdcard

@@ -91,7 +91,7 @@ PRODUCT_PACKAGES += \
     macloader \
     tinymix
 
-# Mic..    
+# Misc..    
 PRODUCT_PACKAGES += \
     libstlport \
     libboringssl-compat
