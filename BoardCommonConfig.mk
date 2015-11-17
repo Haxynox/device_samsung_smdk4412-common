@@ -168,7 +168,7 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos4
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # Pre M ril
-COMMON_GLOBAL_CFLAGS += -DRIL_PRE_M_BLOBS
+#COMMON_GLOBAL_CFLAGS += -DRIL_PRE_M_BLOBS
 
 # inherit from the proprietary version
 -include vendor/samsung/smdk4412-common/BoardConfigVendor.mk
