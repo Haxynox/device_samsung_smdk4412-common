@@ -93,8 +93,7 @@ PRODUCT_PACKAGES += \
 
 # Misc..    
 PRODUCT_PACKAGES += \
-    libstlport \
-    libboringssl-compat
+    libstlport
 
 # MFC API
 PRODUCT_PACKAGES += \
