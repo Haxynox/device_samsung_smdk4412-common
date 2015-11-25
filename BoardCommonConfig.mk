@@ -113,9 +113,6 @@ BOARD_CANT_REALLOCATE_OMX_BUFFERS := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# Logging
-TARGET_USES_LOGD := false
-
 # Wifi
 BOARD_WLAN_DEVICE                := bcmdhd
 BOARD_WLAN_DEVICE_REV            := bcm4334
@@ -166,9 +163,6 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos4
 
 # Show Battery Percentage in LPM mode
 BOARD_CHARGER_SHOW_PERCENTAGE := true
-
-# Pre M ril
-#COMMON_GLOBAL_CFLAGS += -DRIL_PRE_M_BLOBS
 
 # inherit from the proprietary version
 -include vendor/samsung/smdk4412-common/BoardConfigVendor.mk
