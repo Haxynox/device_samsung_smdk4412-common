@@ -26,8 +26,8 @@ import com.cyanogenmod.settings.device.R;
 public class mDNIeNegative extends mDNIeBasePreference {
 
     @Override
-    public int getFileStringResId() {
-        return R.string.mdnie_negative_sysfs_file;
+    public int getPathArrayResId() {
+        return R.array.mdnie_negative_sysfs_paths;
     }
 
     public mDNIeNegative(Context context, AttributeSet attrs) {
@@ -35,7 +35,7 @@ public class mDNIeNegative extends mDNIeBasePreference {
     }
 
     public static void restore(Context context) {
-        mDNIeBasePreference.restore(context, DisplaySettings.KEY_MDNIE_NEGATIVE, R.string.mdnie_negative_sysfs_file);
+        mDNIeBasePreference.restore(context, DisplaySettings.KEY_MDNIE_NEGATIVE, R.array.mdnie_negative_sysfs_paths);
     }
 
 }

@@ -16,12 +16,13 @@
 
 package com.cyanogenmod.settings.device;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.text.TextUtils;
 
+import com.cyanogenmod.settings.device.preferences.mDNIeBasePreference;
 import com.cyanogenmod.settings.device.preferences.mDNIeMode;
 import com.cyanogenmod.settings.device.preferences.mDNIeNegative;
 import com.cyanogenmod.settings.device.preferences.mDNIeScenario;
@@ -29,26 +30,29 @@ import com.cyanogenmod.settings.device.preferences.mDNIeScenario;
 import com.cyanogenmod.settings.device.R;
 
 public class ScreenPreferenceFragment extends PreferenceFragment {
-    private mDNIeScenario mmDNIeScenario;
-    private mDNIeMode mmDNIeMode;
-    private mDNIeNegative mmDNIeNegative;
+    private mDNIeScenario mDNIeScenario;
+    private mDNIeMode mDNIeMode;
+    private mDNIeNegative mDNIeNegative;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addPreferencesFromResource(R.xml.screen_preferences);
-        Resources res = getResources();
 
-        /* mDNIe */
-        mmDNIeScenario = (mDNIeScenario) findPreference(DisplaySettings.KEY_MDNIE_SCENARIO);
-        mmDNIeScenario.setEnabled(mDNIeScenario.isSupported(res.getString(R.string.mdnie_scenario_sysfs_file)));
+        mDNIeScenario = (mDNIeScenario) findPreference(DisplaySettings.KEY_MDNIE_SCENARIO);
+        mDNIeScenario.setEnabled(isSupported(mDNIeScenario.getPathArrayResId()));
 
-        mmDNIeMode = (mDNIeMode) findPreference(DisplaySettings.KEY_MDNIE_MODE);
-        mmDNIeMode.setEnabled(mDNIeMode.isSupported(res.getString(R.string.mdnie_mode_sysfs_file)));
+        mDNIeMode = (mDNIeMode) findPreference(DisplaySettings.KEY_MDNIE_MODE);
+        mDNIeMode.setEnabled(isSupported(mDNIeMode.getPathArrayResId()));
 
-        mmDNIeNegative = (mDNIeNegative) findPreference(DisplaySettings.KEY_MDNIE_NEGATIVE);
-        mmDNIeNegative.setEnabled(mDNIeNegative.isSupported(res.getString(R.string.mdnie_negative_sysfs_file)));
+        mDNIeNegative = (mDNIeNegative) findPreference(DisplaySettings.KEY_MDNIE_NEGATIVE);
+        mDNIeNegative.setEnabled(isSupported(mDNIeNegative.getPathArrayResId()));
+    }
+
+    private boolean isSupported(int pathArrayResId) {
+        final String[] filePaths = getResources().getStringArray(pathArrayResId);
+        final String filePath = mDNIeBasePreference.isSupported(filePaths);
+        return !TextUtils.isEmpty(filePath);
     }
 
     @Override

@@ -22,6 +22,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import com.cyanogenmod.settings.device.Utils;
@@ -29,21 +30,38 @@ import com.cyanogenmod.settings.device.Utils;
 public abstract class mDNIeBasePreference extends ListPreference implements OnPreferenceChangeListener {
     private String mFile;
 
-    public abstract int getFileStringResId();
+    /** Override to implement multiple paths */
+    public abstract int getPathArrayResId();
 
     public mDNIeBasePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mFile = context.getResources().getString(getFileStringResId());
+        final String[] paths = context.getResources().getStringArray(getPathArrayResId());
+        mFile = isSupported(paths);
 
         this.setOnPreferenceChangeListener(this);
     }
 
-    public static boolean isSupported(String filePath) {
-        return Utils.fileExists(filePath);
+    public static String isSupported(String[] filePaths) {
+        for (final String filePath : filePaths) {
+            if (Utils.fileExists(filePath)) {
+                return filePath;
+            }
+        }
+        return null;
+    }
+
+    public static String isSupported(String filePath) {
+        if (Utils.fileExists(filePath)) {
+            return filePath;
+        }
+        return null;
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (TextUtils.isEmpty(mFile)) {
+            return false;
+        }
         Utils.writeValue(mFile, (String) newValue);
         return true;
     }
@@ -51,18 +69,19 @@ public abstract class mDNIeBasePreference extends ListPreference implements OnPr
     /**
      * Restore mdnie user mode setting from SharedPreferences. (Write to kernel.)
      *
-     * @param context         The context to read the SharedPreferences from
-     * @param key             The key of the shared preference
-     * @param fileStringResId The resource id of the string containing the sysfs path
+     * @param context       The context to read the SharedPreferences from
+     * @param key           The key of the shared preference
+     * @param filePathResId The resource id of the string array containing the sysfs paths
      */
-    /* package */ static void restore(Context context, String key, int fileStringResId) {
-        final String file = context.getResources().getString(fileStringResId);
-        if (!isSupported(file)) {
+    /* package */ static void restore(Context context, String key, int filePathResId) {
+        final String[] filePaths = context.getResources().getStringArray(filePathResId);
+        final String supportedFile = isSupported(filePaths);
+        if (TextUtils.isEmpty(supportedFile)) {
             return;
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(file, sharedPrefs.getString(key, "0"));
+        Utils.writeValue(supportedFile, sharedPrefs.getString(key, "0"));
     }
 
 }
