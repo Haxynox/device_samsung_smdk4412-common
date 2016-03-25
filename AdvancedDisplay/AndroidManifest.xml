@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cyanogenmod.settings.device"
-    android:sharedUserId="android.uid.system" >
+    android:sharedUserId="android.uid.system"
+    android:versionCode="100"
+    android:versionName="6.0.1">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
 
-    <application android:label="@string/app_name">
+    <application
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Main">
         <activity
             android:name="com.cyanogenmod.settings.device.DisplaySettings"
             android:launchMode="singleTop"
@@ -14,20 +18,18 @@
             android:hardwareAccelerated="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:excludeFromRecents="true" >
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Startup">
+        <receiver android:name="com.cyanogenmod.settings.device.Startup">
             <intent-filter android:priority="100">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ScreenFragmentActivity" />
-        
     </application>
 </manifest>

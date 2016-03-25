@@ -16,7 +16,6 @@
 
 package com.cyanogenmod.settings.device;
 
-import java.io.IOException;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.content.SharedPreferences;
@@ -24,6 +23,8 @@ import android.preference.Preference;
 import android.preference.ListPreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
+
+import com.cyanogenmod.settings.device.R;
 
 public class mDNIeNegative extends ListPreference implements OnPreferenceChangeListener {
 

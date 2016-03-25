@@ -16,26 +16,15 @@
 
 package com.cyanogenmod.settings.device;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.util.Log;
 
 import com.cyanogenmod.settings.device.R;
 
 public class ScreenFragmentActivity extends PreferenceFragment {
-
-    private static final String PREF_ENABLED = "1";
-    private static final String TAG = "DisplaySettings_Screen";
     private mDNIeScenario mmDNIeScenario;
     private mDNIeMode mmDNIeMode;
     private mDNIeNegative mmDNIeNegative;
@@ -45,7 +34,6 @@ public class ScreenFragmentActivity extends PreferenceFragment {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.screen_preferences);
-        PreferenceScreen preferenceScreen = getPreferenceScreen();
         Resources res = getResources();
 
         /* mDNIe */
@@ -57,23 +45,10 @@ public class ScreenFragmentActivity extends PreferenceFragment {
 
         mmDNIeNegative = (mDNIeNegative) findPreference(DisplaySettings.KEY_MDNIE_NEGATIVE);
         mmDNIeNegative.setEnabled(mDNIeNegative.isSupported(res.getString(R.string.mdnie_negative_sysfs_file)));
-
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-        String key = preference.getKey();
-        Log.w(TAG, "key: " + key);
-
         return true;
-    }
-
-    public static boolean isSupported(String FILE) {
-        return Utils.fileExists(FILE);
-    }
-
-    public static void restore(Context context) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 }
