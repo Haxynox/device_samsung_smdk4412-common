@@ -14,49 +14,55 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.device.preferences;
 
 import android.content.Context;
-import android.util.AttributeSet;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
+import android.util.AttributeSet;
 
-import com.cyanogenmod.settings.device.R;
+import com.cyanogenmod.settings.device.Utils;
 
-public class mDNIeNegative extends ListPreference implements OnPreferenceChangeListener {
+public abstract class mDNIeBasePreference extends ListPreference implements OnPreferenceChangeListener {
+    private String mFile;
 
-    private static String FILE = null;
+    public abstract int getFileStringResId();
 
-    public mDNIeNegative(Context context, AttributeSet attrs) {
+    public mDNIeBasePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        mFile = context.getResources().getString(getFileStringResId());
+
         this.setOnPreferenceChangeListener(this);
-        FILE = context.getResources().getString(R.string.mdnie_negative_sysfs_file);
     }
 
     public static boolean isSupported(String filePath) {
         return Utils.fileExists(filePath);
     }
 
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        Utils.writeValue(mFile, (String) newValue);
+        return true;
+    }
+
     /**
      * Restore mdnie user mode setting from SharedPreferences. (Write to kernel.)
-     * @param context       The context to read the SharedPreferences from
+     *
+     * @param context         The context to read the SharedPreferences from
+     * @param key             The key of the shared preference
+     * @param fileStringResId The resource id of the string containing the sysfs path
      */
-    public static void restore(Context context) {
-        FILE = context.getResources().getString(R.string.mdnie_negative_sysfs_file);
-        if (!isSupported(FILE)) {
+    /* package */ static void restore(Context context, String key, int fileStringResId) {
+        final String file = context.getResources().getString(fileStringResId);
+        if (!isSupported(file)) {
             return;
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DisplaySettings.KEY_MDNIE_NEGATIVE, "0"));
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Utils.writeValue(FILE, (String) newValue);
-        return true;
+        Utils.writeValue(file, sharedPrefs.getString(key, "0"));
     }
 
 }

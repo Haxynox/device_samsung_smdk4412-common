@@ -22,9 +22,13 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 
+import com.cyanogenmod.settings.device.preferences.mDNIeMode;
+import com.cyanogenmod.settings.device.preferences.mDNIeNegative;
+import com.cyanogenmod.settings.device.preferences.mDNIeScenario;
+
 import com.cyanogenmod.settings.device.R;
 
-public class ScreenFragmentActivity extends PreferenceFragment {
+public class ScreenPreferenceFragment extends PreferenceFragment {
     private mDNIeScenario mmDNIeScenario;
     private mDNIeMode mmDNIeMode;
     private mDNIeNegative mmDNIeNegative;

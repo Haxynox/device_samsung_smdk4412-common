@@ -14,22 +14,28 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package com.cyanogenmod.settings.device.preferences;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
+import android.util.AttributeSet;
 
-import com.cyanogenmod.settings.device.preferences.mDNIeMode;
-import com.cyanogenmod.settings.device.preferences.mDNIeNegative;
-import com.cyanogenmod.settings.device.preferences.mDNIeScenario;
+import com.cyanogenmod.settings.device.DisplaySettings;
 
-public class Startup extends BroadcastReceiver {
+import com.cyanogenmod.settings.device.R;
+
+public class mDNIeMode extends mDNIeBasePreference {
 
     @Override
-    public void onReceive(final Context context, final Intent intent) {
-        mDNIeScenario.restore(context);
-        mDNIeMode.restore(context);
-        mDNIeNegative.restore(context);
+    public int getFileStringResId() {
+        return R.string.mdnie_mode_sysfs_file;
     }
+
+    public mDNIeMode(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public static void restore(Context context) {
+        mDNIeBasePreference.restore(context, DisplaySettings.KEY_MDNIE_MODE, R.string.mdnie_mode_sysfs_file);
+    }
+
 }

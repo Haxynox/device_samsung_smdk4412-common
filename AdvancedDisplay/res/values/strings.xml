@@ -16,18 +16,33 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Advanced Display</string>
 
-    <string name="defaults_button">Reset to default</string>
-
     <!-- Screen Preference -->
     <string name="category_screen_title">Screen</string>
     <string name="screen_colors_title">Colors</string>
 
     <!-- mDNIe -->
     <string name="mdnie_scenario_title_head">Scenario</string>
-    <string name="mdnie_scenario_summary_head">Set the mDNIe Scenario</string>
+    <string name="mdnie_scenario_summary_head">Set the mDNIe scenario</string>
     <string name="mdnie_mode_title_head">Mode</string>
-    <string name="mdnie_mode_summary_head">Set the mDNIe Mode</string>
-    <string name="mdnie_negative_title_head">Negative Mode</string>
+    <string name="mdnie_mode_summary_head">Set the mDNIe mode</string>
+    <string name="mdnie_negative_title_head">Negative mode</string>
     <string name="mdnie_negative_summary_head">Enable/Disable inverted colors</string>
 
+    <string name="mdnie_scenario_entries_default">Default</string>
+    <string name="mdnie_scenario_entries_ui">UI</string>
+    <string name="mdnie_scenario_entries_video">Video</string>
+    <string name="mdnie_scenario_entries_warm">Warm</string>
+    <string name="mdnie_scenario_entries_cold">Cold</string>
+    <string name="mdnie_scenario_entries_camera">Camera</string>
+    <string name="mdnie_scenario_entries_navigation">Navigation</string>
+    <string name="mdnie_scenario_entries_gallery">Gallery</string>
+    <string name="mdnie_scenario_entries_vt">VT</string>
+
+    <string name="mdnie_mode_entries_dynamic_default">Dynamic (Default)</string>
+    <string name="mdnie_mode_entries_standard">Standard</string>
+    <string name="mdnie_mode_entries_natural">Natural</string>
+    <string name="mdnie_mode_entries_movie">Movie</string>
+
+    <string name="mdnie_negative_entries_normal">Normal</string>
+    <string name="mdnie_negative_entries_inverted">Inverted</string>
 </resources>

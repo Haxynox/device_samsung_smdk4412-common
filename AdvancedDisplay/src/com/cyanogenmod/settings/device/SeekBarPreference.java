@@ -104,7 +104,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 
     @Override
     protected View onCreateView(ViewGroup parent){
-
+        super.onCreateView(parent);
         RelativeLayout layout =  null;
         try {
             LayoutInflater mInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -134,7 +134,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
                 }
                 // remove the existing seekbar (there may not be one) and add ours
                 newContainer.removeAllViews();
-                newContainer.addView(mSeekBar, ViewGroup.LayoutParams.FILL_PARENT,
+                newContainer.addView(mSeekBar, ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT);
             }
         }

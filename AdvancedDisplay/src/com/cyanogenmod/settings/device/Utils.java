@@ -25,15 +25,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.SyncFailedException;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Context;
 
 public class Utils {
 
     private static final String TAG = "DeviceSettings_Utils";
-    private static final String TAG_READ = "DeviceSettings_Utils_Read";
-    private static final String TAG_WRITE = "DeviceSettings_Utils_Write";
 
     // Read value from sysfs interface
     public static String readOneLine(String sFile) {
@@ -45,11 +40,10 @@ public class Utils {
             try {
                 sLine = brBuffer.readLine();
             } finally {
-                Log.w(TAG_READ, "file " + sFile + ": " + sLine);
                 brBuffer.close();
             }
         } catch (Exception e) {
-            Log.e(TAG_READ, "IO Exception when reading /sys/ file", e);
+            Log.e(TAG, "IO Exception when reading /sys/ file", e);
         }
         return sLine;
     }
@@ -78,7 +72,6 @@ public class Utils {
         } finally {
             if (fos != null) {
                 try {
-                    Log.w(TAG_WRITE, "file " + filename + ": " + value);
                     fos.close();
                 } catch (IOException ex) {
                     Log.w(TAG, "IOException while closing synced file: ", ex);
@@ -119,7 +112,6 @@ public class Utils {
         } finally {
             if (fos != null) {
                 try {
-                    Log.w(TAG_WRITE, "file " + filename + ": " + value);
                     fos.close();
                 } catch (IOException ex) {
                     Log.w(TAG, "IOException while closing synced file: ", ex);
@@ -149,15 +141,4 @@ public class Utils {
         return new File(filename).exists();
     }
 
-    public static void showDialog(Context ctx, String title, String message) {
-        final AlertDialog alertDialog = new AlertDialog.Builder(ctx).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int which) {
-              alertDialog.dismiss();
-           }
-        });
-        alertDialog.show();
-    }
 }
