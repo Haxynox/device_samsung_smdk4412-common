@@ -89,6 +89,7 @@ struct exynos_camera_preset exynos_camera_presets_smdk4x12[] = {
 		.params = {
 			.preview_size_values = "1280x720,1184x666,1008x672,960x720,880x720,640x480,352x288,320x240",
 			.preview_size = "960x720",
+			.preview_video_size = "1280x720",
 			.preview_format_values = "yuv420sp,yuv420p,rgb565",
 			.preview_format = "yuv420sp",
 			.preview_frame_rate_values = "30,20,15",
@@ -422,7 +423,7 @@ int exynos_camera_params_init(struct exynos_camera *exynos_camera, int id)
 	// Recording preview
 
 	exynos_param_string_set(exynos_camera, "preferred-preview-size-for-video",
-		exynos_camera->config->presets[id].params.preview_size);
+		exynos_camera->config->presets[id].params.preview_video_size);
 
 	// Preview
 
