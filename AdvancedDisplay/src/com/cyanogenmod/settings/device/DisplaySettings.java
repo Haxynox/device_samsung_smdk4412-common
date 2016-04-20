@@ -28,6 +28,8 @@ public class DisplaySettings extends Activity {
     public static final String KEY_MDNIE_SCENARIO = "mdnie_scenario";
     public static final String KEY_MDNIE_MODE = "mdnie_mode";
     public static final String KEY_MDNIE_NEGATIVE = "mdnie_negative";
+    public static final String KEY_TOUCHKEY_LIGHT = "touchkey_light";
+    public static final String KEY_TOUCHKEY_TIMEOUT = "touchkey_timeout";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
